@@ -40,6 +40,7 @@ const singleMealDisplayUI = function (meal) {
 };
 
 const multiDisplayUI = function (data) {
+  meals.innerHTML = '';
   resultHeading.textContent = `Search for ${search.value}`;
 
   data.forEach((meal) => {
@@ -71,7 +72,6 @@ const noResult = function () {
 const fetchData = async function (url) {
   const res = await fetch(url);
   const { meals } = await res.json();
-  console.log(meals);
   if (!meals) noResult();
   if (meals?.length > 1) multiDisplayUI(meals);
   if (meals?.length === 1) singleMealDisplayUI(meals[0]);
